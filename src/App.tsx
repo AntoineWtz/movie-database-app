@@ -1,5 +1,6 @@
 import React from 'react';
 import MovieList from './components/MovieList';
+import './tailwind.css';
 
 const App: React.FC = () => {
   return (

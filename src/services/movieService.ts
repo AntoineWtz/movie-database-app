@@ -19,3 +19,27 @@ export const getMovies = async () => {
         throw error;
     }
 };
+
+export const fetchNowPlayingMovies = async () => {
+    try {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=62d84bb73740c0734998e744f571926a`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch now playing movies');
+        }
+        return response.json();
+    } catch (error: any) {
+        throw new Error(String(error.message));
+    }
+};
+
+export const fetchUpcomingMovies = async () => {
+    try {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=62d84bb73740c0734998e744f571926a`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch upcoming movies');
+        }
+        return response.json();
+    } catch (error: any) {
+        throw new Error(String(error.message));
+    }
+};

@@ -1,4 +1,6 @@
+// SearchResults.tsx
 import React from 'react';
+import MovieDetail from './MovieDetail';
 
 interface SearchResultsProps {
     results: any[];
@@ -7,12 +9,17 @@ interface SearchResultsProps {
 const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
     return (
         <div className="my-8">
-            <h2>Search Results</h2>
-            <ul>
-                {results.map((result: any) => (
-                    <li key={result.id}>{result.title}</li>
-                ))}
-            </ul>
+            {results.length > 0 ? (
+                <ul>
+                    {results.map((movie) => (
+                        <li key={movie.id}>
+                            <MovieDetail movie={movie} />
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No results found.</p>
+            )}
         </div>
     );
 };

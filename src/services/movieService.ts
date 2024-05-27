@@ -22,7 +22,7 @@ export const getMovies = async () => {
 
 export const fetchNowPlayingMovies = async () => {
     try {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=62d84bb73740c0734998e744f571926a`);
+        const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`);
         if (!response.ok) {
             throw new Error('Failed to fetch now playing movies');
         }
@@ -34,12 +34,27 @@ export const fetchNowPlayingMovies = async () => {
 
 export const fetchUpcomingMovies = async () => {
     try {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=62d84bb73740c0734998e744f571926a`);
+        const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`);
         if (!response.ok) {
             throw new Error('Failed to fetch upcoming movies');
         }
         return response.json();
     } catch (error: any) {
         throw new Error(String(error.message));
+    }
+};
+
+export const searchMovies = async (query: string) => {
+    try {
+        const response = await axiosInstance.get('/search/movie', {
+            params: {
+                api_key: API_KEY,
+                query,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error searching movies:', error);
+        throw error;
     }
 };

@@ -27,7 +27,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
             />
             <button
                 type="submit"
-                className="ml-2 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                className="ml-2 p-2 bg-sky-500 text-white rounded-md hover:bg-sky-600"
             >
                 Search
             </button>

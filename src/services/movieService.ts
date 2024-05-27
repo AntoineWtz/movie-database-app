@@ -38,7 +38,13 @@ export const fetchUpcomingMovies = async () => {
         if (!response.ok) {
             throw new Error('Failed to fetch upcoming movies');
         }
-        return response.json();
+        const data = await response.json();
+        const upcomingMovies = data.results.filter((movie: any) => {
+            const releaseDate = new Date(movie.release_date);
+            const today = new Date();
+            return releaseDate > today;
+        });
+        return { results: upcomingMovies };
     } catch (error: any) {
         throw new Error(String(error.message));
     }
@@ -46,15 +52,12 @@ export const fetchUpcomingMovies = async () => {
 
 export const searchMovies = async (query: string) => {
     try {
-        const response = await axiosInstance.get('/search/movie', {
-            params: {
-                api_key: API_KEY,
-                query,
-            },
-        });
-        return response.data;
-    } catch (error) {
-        console.error('Error searching movies:', error);
-        throw error;
+        const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`);
+        if (!response.ok) {
+            throw new Error('Failed to search movies');
+        }
+        return response.json();
+    } catch (error: any) {
+        throw new Error(String(error.message));
     }
 };

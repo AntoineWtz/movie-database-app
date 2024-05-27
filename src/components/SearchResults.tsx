@@ -1,4 +1,3 @@
-// SearchResults.tsx
 import React from 'react';
 import MovieDetail from './MovieDetail';
 
@@ -10,15 +9,11 @@ const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
     return (
         <div className="my-8">
             {results.length > 0 ? (
-                <ul>
-                    {results.map((movie) => (
-                        <li key={movie.id}>
-                            <MovieDetail movie={movie} />
-                        </li>
-                    ))}
-                </ul>
+                results.map((movie) => (
+                    <MovieDetail key={movie.id} movie={movie} />
+                ))
             ) : (
-                <p>No results found.</p>
+                <p>No results found</p>
             )}
         </div>
     );

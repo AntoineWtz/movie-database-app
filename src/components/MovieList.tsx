@@ -22,6 +22,30 @@ const MovieList: React.FC = () => {
             .catch((error) => console.error('Error fetching upcoming movies:', error));
     }, []);
 
+    useEffect(() => {
+        if (sortOption) {
+            const sortedResults = [...searchResults].sort((a, b) => {
+                switch (sortOption) {
+                    case 'popularity.desc':
+                        return b.popularity - a.popularity;
+                    case 'popularity.asc':
+                        return a.popularity - b.popularity;
+                    case 'release_date.desc':
+                        return new Date(b.release_date).getTime() - new Date(a.release_date).getTime();
+                    case 'release_date.asc':
+                        return new Date(a.release_date).getTime() - new Date(b.release_date).getTime();
+                    case 'vote_average.desc':
+                        return b.vote_average - a.vote_average;
+                    case 'vote_average.asc':
+                        return a.vote_average - b.vote_average;
+                    default:
+                        return 0;
+                }
+            });
+            setSearchResults(sortedResults);
+        }
+    }, [sortOption, searchResults]);
+
     const handleSearch = (query: string) => {
         setSearchQuery(query);
         searchMovies(query)
@@ -31,7 +55,6 @@ const MovieList: React.FC = () => {
 
     const handleSort = (option: string) => {
         setSortOption(option);
-        // Implement sorting logic here if needed
     };
 
     return (

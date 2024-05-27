@@ -17,15 +17,18 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="my-4">
+        <form onSubmit={handleSubmit} className="my-4 flex">
             <input
                 type="text"
                 placeholder="Search movies..."
                 value={query}
                 onChange={handleChange}
-                className="p-2 border border-gray-300 rounded-md w-1/2 block mx-auto"
+                className="p-2 border border-gray-300 rounded-md w-full"
             />
-            <button type="submit" className="mt-2 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-1/6 block mx-auto">
+            <button
+                type="submit"
+                className="ml-2 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+            >
                 Search
             </button>
         </form>

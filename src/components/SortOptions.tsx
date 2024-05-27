@@ -12,7 +12,11 @@ const SortOptions: React.FC<SortOptionsProps> = ({ onChange }) => {
     return (
         <div className="my-4">
             <label htmlFor="sortOptions" className="mr-2 font-bold">Sort by:</label>
-            <select id="sortOptions" onChange={handleChange} className="p-2 border border-gray-300 rounded-md">
+            <select
+                id="sortOptions"
+                onChange={handleChange}
+                className="p-2 border border-gray-300 rounded-md"
+            >
                 <option value="popularity.desc">Popularity Descending</option>
                 <option value="popularity.asc">Popularity Ascending</option>
                 <option value="release_date.desc">Release Date Descending</option>

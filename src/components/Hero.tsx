@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface HeroProps {
-    nowPlayingMovies: any[]; // Définir le type de nowPlayingMovies
-    upcomingMovies: any[]; // Définir le type de upcomingMovies
+    nowPlayingMovies: any[];
+    upcomingMovies: any[];
 }
 
 const Hero: React.FC<HeroProps> = ({ nowPlayingMovies, upcomingMovies }) => {
